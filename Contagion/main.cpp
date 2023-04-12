@@ -1,5 +1,4 @@
 #include "input.h"
-#include "region.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -12,9 +11,10 @@ int main()
 {
 	
 	cout << "Infection Time" << endl;
-	cout << "**************" << endl;
 
-	inputRegion();
+	Region infectedRegion;
+	inputRegion(infectedRegion);
+	infectedRegion.print();
 
 	return 0;
 }

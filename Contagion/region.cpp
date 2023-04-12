@@ -94,8 +94,8 @@ void Region::setRegionAdjacentAreas()
 void Region::print()
 {
 	std::cout << "**** REGION STATS ****" << std::endl;
-	std::cout << infectedArea << std::endl;
-	std::cout << infectiousPeriod << std::endl;
-	std::cout << contactRate << std::endl;
-	std::cout << regionVaccineCount << std::endl;
+	std::cout << "Infected Area: " << infectedArea << std::endl;
+	std::cout << "Infectious Period: " << infectiousPeriod << std::endl;
+	std::cout << "Contact Rate: " << contactRate << std::endl;
+	std::cout << "Region Vaccine Count: " << regionVaccineCount << std::endl;
 }

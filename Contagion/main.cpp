@@ -13,7 +13,7 @@ int main()
 	cout << "Infection Time" << endl;
 
 	Region infectedRegion;
-	inputRegion(infectedRegion);
+	configureRegion(infectedRegion);
 	infectedRegion.print();
 
 	return 0;

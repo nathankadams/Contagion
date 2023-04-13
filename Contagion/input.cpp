@@ -9,7 +9,12 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-void inputRegion(Region& r)
+void inputArea()
+{
+
+}
+
+void configureRegion(Region& r)
 {
 	std::ifstream regionFile;
 	regionFile.open("input/config1.txt");

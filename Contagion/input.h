@@ -1,4 +1,5 @@
 #pragma once
 #include "region.h"
 
-void inputRegion(Region& region);
+void inputArea();
+void configureRegion(Region& region);

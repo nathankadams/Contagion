@@ -1,5 +1,6 @@
 #pragma once
 #include "region.h"
+#include <string>
 
-void inputArea();
+void inputAreas(std::string fileName, Region& region);
 void configureRegion(Region& region);

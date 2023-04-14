@@ -9,18 +9,47 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-void inputArea()
+void inputAreas(string fileName, Region& region)
 {
+	std::ifstream populationFilePath;
+	populationFilePath.open("input/" + fileName);
 
+	string inputLine;
+
+	if (!populationFilePath.is_open())
+	{
+		cerr << "Population file error";
+		return;
+	}
+
+	while (!populationFilePath.eof())
+	{
+		getline(populationFilePath, inputLine);
+		
+		if (inputLine != "")
+		{
+			int population = stoi(inputLine.substr(inputLine.find(':') + 1));
+			region.addArea(population);
+		}
+	}
+
+	for (int i = 1; i < region.size() + 1; i++)
+	{
+		region.getArea(i).print();
+	}
+
+	populationFilePath.close();
+
+	return;
 }
 
-void configureRegion(Region& r)
+void configureRegion(Region& region)
 {
-	std::ifstream regionFile;
-	regionFile.open("input/config1.txt");
+	std::ifstream configurationFilePath;
+	configurationFilePath.open("input/config1.txt");
 
-	string populationTxt;
-	string regionTxt;
+	string populationFile;
+	string regionFile;
 	int infectedArea = -1;
 	int infectiousPeriod = -1;
 	int contactRate = -1;
@@ -28,54 +57,57 @@ void configureRegion(Region& r)
 
 	string inputLine;
 
-	if (!regionFile.is_open())
+	if (!configurationFilePath.is_open())
 	{
-		cerr << "File error";
+		cerr << "Configuration file error";
+		return;
 	}
 	
-	while (!regionFile.eof())
+	while (!configurationFilePath.eof())
 	{
-		getline(regionFile, inputLine);
+		getline(configurationFilePath, inputLine);
 
 		// store input parameter values following ':'
 		string inputParameter = inputLine.substr(0, inputLine.find(':'));
 		if (inputParameter == "Population")
 		{
-			populationTxt = inputLine.substr(inputLine.find(':') + 1);
+			populationFile = inputLine.substr(inputLine.find(':') + 1);
 			continue;
 		}
 		if (inputParameter == "Region")
 		{
-			regionTxt = inputLine.substr(inputLine.find(':') + 1);
+			regionFile = inputLine.substr(inputLine.find(':') + 1);
 			continue;
 		}
 		if (inputParameter == "Infected Area")
 		{
 			infectedArea = stoi(inputLine.substr(inputLine.find(':') + 1));
-			r.setInfectedArea(infectedArea);
+			region.setInfectedArea(infectedArea);
 			continue;
 		}
 		if (inputParameter == "Infectious Period")
 		{
 			infectiousPeriod = stoi(inputLine.substr(inputLine.find(':') + 1));
-			r.setInfectiousPeriod(infectiousPeriod);
+			region.setInfectiousPeriod(infectiousPeriod);
 			continue;
 		}
 		if (inputParameter == "Contact Rate")
 		{
 			contactRate = stoi(inputLine.substr(inputLine.find(':') + 1));
-			r.setContactRate(contactRate);
+			region.setContactRate(contactRate);
 			continue;
 		}
 		if (inputParameter == "Number of Vaccines")
 		{
 			vaccineCount = stoi(inputLine.substr(inputLine.find(':') + 1));
-			r.setRegionVaccineCount(vaccineCount);
+			region.setRegionVaccineCount(vaccineCount);
 			continue;
 		}
 	}
 
-	regionFile.close();
+	inputAreas(populationFile, region);
+
+	configurationFilePath.close();
 
 	return;
 

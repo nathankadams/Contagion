@@ -1,4 +1,5 @@
 #include "area.h"
+#include <iostream>
 
 Area::Area()
 {
@@ -18,19 +19,9 @@ Area::Area(float c, int ad, int p, int avc, std::vector<int> aaa, std::vector<Ag
 	agents = a;
 }
 
-void Area::setCloseness(float c)
-{
-	closeness = c;
-}
-
 float Area::getCloseness()
 {
 	return closeness;
-}
-
-void Area::setAdjacencyDegree(int ad)
-{
-	adjacencyDegree = ad;
 }
 
 int Area::getAdjacencyDegree()
@@ -38,19 +29,9 @@ int Area::getAdjacencyDegree()
 	return adjacencyDegree;
 }
 
-void Area::setPopulation(int p)
-{
-	population = p;
-}
-
 int Area::getPopulation()
 {
 	return population;
-}
-
-void Area::setAreaVaccineCount(int avc)
-{
-	areaVaccineCount = avc;
 }
 
 int Area::getAreaVaccineCount()
@@ -58,12 +39,54 @@ int Area::getAreaVaccineCount()
 	return areaVaccineCount;
 }
 
+std::vector<Agent> Area::getAgents()
+{
+	return agents;
+}
+
 std::vector<int> Area::getAreaAdjacentAreas()
 {
 	return areaAdjacentAreas;
 }
 
-std::vector<Agent> Area::getAgents()
+void Area::setCloseness(float c)
 {
-	return agents;
+	closeness = c;
+}
+
+void Area::setAdjacencyDegree(int ad)
+{
+	adjacencyDegree = ad;
+}
+
+void Area::setPopulation(int p)
+{
+	population = p;
+}
+
+void Area::setAreaVaccineCount(int avc)
+{
+	areaVaccineCount = avc;
+}
+
+void Area::setAgents()
+{
+	// TODO
+}
+
+void Area::setAdjacentAreas()
+{
+	// TODO
+}
+
+
+// Area print
+void Area::print()
+{
+	std::cout << "**** AREA STATS ****" << std::endl;
+	std::cout << "Closeness: " << closeness << std::endl;
+	std::cout << "Adjacency Degree: " << adjacencyDegree << std::endl;
+	std::cout << "Population: " << population << std::endl;
+	std::cout << "Area Vaccine Count: " << areaVaccineCount << std::endl;
+	std::cout << std::endl;
 }

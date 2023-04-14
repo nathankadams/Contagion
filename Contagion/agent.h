@@ -5,6 +5,7 @@ class Agent
 {
 private:
 	int currentState;
+
 public:
 	Agent();
 	Agent(int currentState);

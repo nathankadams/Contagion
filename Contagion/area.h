@@ -11,18 +11,27 @@ private:
 	int areaVaccineCount;
 	std::vector<int> areaAdjacentAreas;
 	std::vector<Agent> agents;
+
 public:
 	Area();
 	Area(float closeness, int adjacencyDegree, int population, int areaVaccineCount, std::vector<int> areaAdjacentAreas, std::vector<Agent> agents);
-	void setCloseness(float closeness);
+	
+	// getters
 	float getCloseness();
-	void setAdjacencyDegree(int adjacencyDegree);
 	int getAdjacencyDegree();
-	void setPopulation(int population);
 	int getPopulation();
-	void setAreaVaccineCount(int areaVaccineCount);
 	int getAreaVaccineCount();
-	std::vector<int> getAreaAdjacentAreas();
 	std::vector<Agent> getAgents();
+	std::vector<int> getAreaAdjacentAreas();
+	
+	// setters
+	void setCloseness(float closeness);
+	void setAdjacencyDegree(int adjacencyDegree);
+	void setPopulation(int population);
+	void setAreaVaccineCount(int areaVaccineCount);
+	void setAgents();
+	void setAdjacentAreas();
+	 
 	//print function
+	void print();
 };

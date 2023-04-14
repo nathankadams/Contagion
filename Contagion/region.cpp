@@ -49,6 +49,12 @@ int Region::getRegionVaccineCount()
 	return regionVaccineCount;
 }
 
+Area Region::getArea(int ai)
+{
+	// off-by-one error accounting (ex: Area 1 at areas[0])
+	return areas[ai - 1];
+}
+
 std::vector<Area> Region::getAreas()
 {
 	return areas;
@@ -80,14 +86,21 @@ void Region::setRegionVaccineCount(int rvc)
 	regionVaccineCount = rvc;
 }
 
-void Region::setAreas()
+void Region::addArea(int p)
 {
-
+	Area newArea;
+	newArea.setPopulation(p);
+	areas.push_back(newArea);
 }
 
 void Region::setRegionAdjacentAreas()
 {
 
+}
+
+int Region::size()
+{
+	return areas.size();
 }
 
 // Region print
@@ -98,4 +111,5 @@ void Region::print()
 	std::cout << "Infectious Period: " << infectiousPeriod << std::endl;
 	std::cout << "Contact Rate: " << contactRate << std::endl;
 	std::cout << "Region Vaccine Count: " << regionVaccineCount << std::endl;
+	std::cout << std::endl;
 }

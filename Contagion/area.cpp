@@ -1,6 +1,11 @@
 #include "area.h"
 #include <iostream>
 
+using std::cout;
+using std::endl;
+using std::string;
+using std::vector;
+
 Area::Area()
 {
 	closeness = -1.0;
@@ -9,7 +14,7 @@ Area::Area()
 	areaVaccineCount = -1;
 }
 
-Area::Area(float c, int ad, int p, int avc, std::vector<int> aaa, std::vector<Agent> a)
+Area::Area(float c, int ad, int p, int avc, vector<int> aaa, vector<Agent> a)
 {
 	closeness = c;
 	adjacencyDegree = ad;
@@ -39,12 +44,12 @@ int Area::getAreaVaccineCount()
 	return areaVaccineCount;
 }
 
-std::vector<Agent> Area::getAgents()
+vector<Agent> Area::getAgents()
 {
 	return agents;
 }
 
-std::vector<int> Area::getAreaAdjacentAreas()
+vector<int> Area::getAreaAdjacentAreas()
 {
 	return areaAdjacentAreas;
 }
@@ -83,10 +88,10 @@ void Area::setAdjacentAreas()
 // Area print
 void Area::print()
 {
-	std::cout << "**** AREA STATS ****" << std::endl;
-	std::cout << "Closeness: " << closeness << std::endl;
-	std::cout << "Adjacency Degree: " << adjacencyDegree << std::endl;
-	std::cout << "Population: " << population << std::endl;
-	std::cout << "Area Vaccine Count: " << areaVaccineCount << std::endl;
-	std::cout << std::endl;
+	cout << "**** AREA STATS ****" << endl;
+	cout << "Closeness: " << closeness << endl;
+	cout << "Adjacency Degree: " << adjacencyDegree << endl;
+	cout << "Population: " << population << endl;
+	cout << "Area Vaccine Count: " << areaVaccineCount << endl;
+	cout << endl;
 }

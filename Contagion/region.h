@@ -32,7 +32,7 @@ public:
 	void setContactRate(int contactRate);
 	void setRegionVaccineCount(int regionVaccineCount);
 	void addArea(int population);
-	void setRegionAdjacentAreas();
+	void setRegionAdjacentAreas(std::vector<int> regionRow);
 	
 	// number of areas in the region
 	int size();

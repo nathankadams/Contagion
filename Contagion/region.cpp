@@ -2,6 +2,11 @@
 #include <iostream>
 #include <vector>
 
+using std::cout;
+using std::endl;
+using std::string;
+using std::vector;
+
 Region::Region()
 {
 	infectedArea = -1;
@@ -18,7 +23,7 @@ Region::Region(int ia, int ip, int cr, int rvc)
 	regionVaccineCount = rvc;
 }
 
-Region::Region(int ia, int ip, int cr, int rvc, std::vector<Area> a, std::vector<std::vector<int>> raa)
+Region::Region(int ia, int ip, int cr, int rvc, vector<Area> a, vector<vector<int>> raa)
 {
 	infectedArea = ia;
 	infectiousPeriod = ip;
@@ -55,12 +60,12 @@ Area Region::getArea(int ai)
 	return areas[ai - 1];
 }
 
-std::vector<Area> Region::getAreas()
+vector<Area> Region::getAreas()
 {
 	return areas;
 }
 
-std::vector<std::vector<int>> Region::getRegionAdjacentAreas()
+vector<std::vector<int>> Region::getRegionAdjacentAreas()
 {
 	return regionAdjacentAreas;
 }
@@ -93,9 +98,9 @@ void Region::addArea(int p)
 	areas.push_back(newArea);
 }
 
-void Region::setRegionAdjacentAreas()
+void Region::setRegionAdjacentAreas(vector<int> rr)
 {
-
+	regionAdjacentAreas.push_back(rr);
 }
 
 int Region::size()
@@ -106,10 +111,18 @@ int Region::size()
 // Region print
 void Region::print()
 {
-	std::cout << "**** REGION STATS ****" << std::endl;
-	std::cout << "Infected Area: " << infectedArea << std::endl;
-	std::cout << "Infectious Period: " << infectiousPeriod << std::endl;
-	std::cout << "Contact Rate: " << contactRate << std::endl;
-	std::cout << "Region Vaccine Count: " << regionVaccineCount << std::endl;
-	std::cout << std::endl;
+	cout << "**** REGION STATS ****" << endl;
+	cout << "Infected Area: " << infectedArea << endl;
+	cout << "Infectious Period: " << infectiousPeriod << endl;
+	cout << "Contact Rate: " << contactRate << endl;
+	cout << "Region Vaccine Count: " << regionVaccineCount << endl;
+	cout << "\n**** Adjacency Matrix ****" << endl;
+	for (int i = 0; i < regionAdjacentAreas.size(); i++)
+	{
+		for (int j = 0; j < regionAdjacentAreas[i].size(); j++)
+		{
+			cout << regionAdjacentAreas[i][j] << " ";
+		}
+		cout << endl;
+	}
 }

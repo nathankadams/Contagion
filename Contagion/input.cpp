@@ -1,24 +1,29 @@
 #include "input.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
+#include <vector>
 
 using std::cout;
 using std::cin;
 using std::cerr;
 using std::endl;
+using std::ifstream;
+using std::stringstream;
 using std::string;
+using std::vector;
 
 void inputAreas(string fileName, Region& region)
 {
-	std::ifstream populationFilePath;
+	ifstream populationFilePath;
 	populationFilePath.open("input/" + fileName);
 
 	string inputLine;
 
 	if (!populationFilePath.is_open())
 	{
-		cerr << "Population file error";
+		cerr << "Population file error" << endl;
 		return;
 	}
 
@@ -33,19 +38,58 @@ void inputAreas(string fileName, Region& region)
 		}
 	}
 
-	for (int i = 1; i < region.size() + 1; i++)
-	{
-		region.getArea(i).print();
-	}
-
 	populationFilePath.close();
 
 	return;
 }
 
+void inputAreaAdjacencies(string fileName, Region& region)
+{
+	ifstream regionFilePath;
+	regionFilePath.open("input/" + fileName);
+
+	vector<int> regionRow;
+	string inputLine;
+	string adjacencyValue;
+
+	if (!regionFilePath.is_open())
+	{
+		cerr << "Region file error" << endl;
+		return;
+	}
+
+	getline(regionFilePath, inputLine);
+	while (!regionFilePath.eof())
+	{
+		getline(regionFilePath, inputLine);
+		regionRow.clear();
+		stringstream ss(inputLine);
+		getline(ss, adjacencyValue, ',');
+		while (getline(ss, adjacencyValue, ','))
+		{
+			if (adjacencyValue == "")
+			{ 
+				regionRow.push_back(0);
+			}
+			else
+			{
+				regionRow.push_back(stoi(adjacencyValue));
+			}
+		}
+		
+		for (int i = 0; i < regionRow.size(); i++)
+		{
+			cout << regionRow[i] << " ";
+		}
+		cout << endl;
+
+		region.setRegionAdjacentAreas(regionRow);
+	}
+}
+
 void configureRegion(Region& region)
 {
-	std::ifstream configurationFilePath;
+	ifstream configurationFilePath;
 	configurationFilePath.open("input/config1.txt");
 
 	string populationFile;
@@ -59,7 +103,7 @@ void configureRegion(Region& region)
 
 	if (!configurationFilePath.is_open())
 	{
-		cerr << "Configuration file error";
+		cerr << "Configuration file error" << endl;
 		return;
 	}
 	
@@ -67,7 +111,7 @@ void configureRegion(Region& region)
 	{
 		getline(configurationFilePath, inputLine);
 
-		// store input parameter values following ':'
+		// store input parameter values following ':' line-by-line
 		string inputParameter = inputLine.substr(0, inputLine.find(':'));
 		if (inputParameter == "Population")
 		{
@@ -106,6 +150,7 @@ void configureRegion(Region& region)
 	}
 
 	inputAreas(populationFile, region);
+	inputAreaAdjacencies(regionFile, region);
 
 	configurationFilePath.close();
 

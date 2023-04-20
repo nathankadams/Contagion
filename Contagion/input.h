@@ -3,4 +3,5 @@
 #include <string>
 
 void inputAreas(std::string fileName, Region& region);
+void inputAreaAdjacencies(std::string fileName, Region& region);
 void configureRegion(Region& region);
